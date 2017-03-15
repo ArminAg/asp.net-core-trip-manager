@@ -1,4 +1,5 @@
-﻿using asp.net_core_trip_manager.ViewModels;
+﻿using asp.net_core_trip_manager.Services;
+using asp.net_core_trip_manager.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,13 @@ namespace asp.net_core_trip_manager.Controllers.Web
 {
     public class AppController : Controller
     {
+        private IMailService _mailService;
+
+        public AppController(IMailService mailService)
+        {
+            _mailService = mailService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -22,6 +30,7 @@ namespace asp.net_core_trip_manager.Controllers.Web
         [HttpPost]
         public IActionResult Contact(ContactViewModel viewModel)
         {
+            _mailService.SendMail("user@domain.com", viewModel.Email, "From Trip Manager", viewModel.Message);
             return View();
         }
 

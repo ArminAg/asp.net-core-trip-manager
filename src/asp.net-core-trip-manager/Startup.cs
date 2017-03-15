@@ -7,15 +7,33 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using asp.net_core_trip_manager.Services;
 
 namespace asp.net_core_trip_manager
 {
     public class Startup
     {
+        private IHostingEnvironment _env;
+
+        public Startup(IHostingEnvironment env)
+        {
+            _env = env;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            if (_env.IsEnvironment("Development") || _env.IsEnvironment("Testing"))
+            {
+                // DebugMailService reused only in scope of single request
+                services.AddScoped<IMailService, DebugMailService>();
+            }
+            else
+            {
+                // Implement Real Service
+            }
+            
             services.AddMvc();
         }
 
