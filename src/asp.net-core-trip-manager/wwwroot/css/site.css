@@ -1,0 +1,59 @@
+﻿  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #fcfcfc;
+  }
+
+  main {
+    flex: 1 0 auto;
+  } 
+
+header, main, footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+}
+
+ul.side-nav.fixed li.logo {
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 80px;
+}
+
+nav.top-nav {
+    height: 122px;
+    box-shadow: none;
+}
+
+nav.top-nav a.page-title {
+    line-height: 122px;
+    font-size: 48px;
+}
+
+#logo-container {
+    height: auto;
+}
+
+    #logo-container img {
+        width: 170px;
+        height: auto;
+    }
+
+footer.page-footer {
+    padding-top: 0;
+}
+
+/* Page Specific */
+#username {
+    display: block;
+    font-size: 20px;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
