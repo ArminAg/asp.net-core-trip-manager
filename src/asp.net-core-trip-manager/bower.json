@@ -4,6 +4,8 @@
   "dependencies": {
     "underscore": "~1.8.3",
     "jquery": "~3.1.1",
-    "materialize": "~0.98.0"
+    "materialize": "~0.98.0",
+    "jquery-validation": "~1.16.0",
+    "jquery-validation-unobtrusive": "~3.2.6"
   }
 }

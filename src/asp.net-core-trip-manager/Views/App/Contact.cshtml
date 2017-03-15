@@ -1,3 +1,42 @@
-﻿@{
+﻿@model asp.net_core_trip_manager.ViewModels.ContactViewModel
+@{
     ViewBag.Title = "Contact";
+}
+
+<div id="shadow" class="section scrollspy">
+    <form method="post" class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input asp-for="Name" id="name" type="text">
+                <label asp-for="Name" for="name">Name</label>
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">mail</i>
+                <input asp-for="Email" id="email" type="email">
+                <label asp-for="Email" for="email">Email</label>
+                <span asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea asp-for="Message" id="message" class="materialize-textarea"></textarea>
+                <label asp-for="Message" for="message">Message</label>
+                <span asp-validation-for="Message"></span>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
+                Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 }

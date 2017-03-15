@@ -25,13 +25,13 @@
                 </a>
             </li>
             <li class="bold">
-                <a href="@Url.Action("Index", "App")" class="waves-effect waves-teal">Home</a>
+                <a asp-controller="App" asp-action="Index" class="waves-effect waves-teal">Home</a>
             </li>
             <li class="bold">
-                <a href="@Url.Action("About", "App")" class="waves-effect waves-teal">About</a>
+                <a asp-controller="App" asp-action="About" class="waves-effect waves-teal">About</a>
             </li>
             <li class="bold">
-                <a href="@Url.Action("Contact", "App")" class="waves-effect waves-teal">Contact</a>
+                <a asp-controller="App" asp-action="Contact" class="waves-effect waves-teal">Contact</a>
             </li>
         </ul>
     </header>
@@ -54,6 +54,7 @@
 
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/lib/materialize/dist/js/materialize.min.js"></script>
+    @RenderSection("scripts", false)
     <script type="text/javascript" src="~/js/script.js"></script>
 </body>
 </html>

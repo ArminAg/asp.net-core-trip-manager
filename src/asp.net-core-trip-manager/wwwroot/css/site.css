@@ -1,13 +1,13 @@
-﻿  body {
+﻿body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     background-color: #fcfcfc;
-  }
+}
 
-  main {
+main {
     flex: 1 0 auto;
-  } 
+}
 
 header, main, footer {
     padding-left: 300px;
@@ -30,10 +30,10 @@ nav.top-nav {
     box-shadow: none;
 }
 
-nav.top-nav a.page-title {
-    line-height: 122px;
-    font-size: 48px;
-}
+    nav.top-nav a.page-title {
+        line-height: 122px;
+        font-size: 48px;
+    }
 
 #logo-container {
     height: auto;
@@ -55,5 +55,11 @@ footer.page-footer {
 }
 
 .img-circle {
-  border-radius: 50%;
+    border-radius: 50%;
+}
+
+.field-validation-error {
+    color: #F44336;
+    font-size: 12px;
+    margin-left: 45px;
 }
