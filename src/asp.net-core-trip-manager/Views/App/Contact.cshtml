@@ -39,4 +39,10 @@
 @section scripts{
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    @if (ViewBag.Message != null)
+    {
+        <script>
+            Materialize.toast("@ViewBag.Message", 3000);
+        </script>
+    }
 }
