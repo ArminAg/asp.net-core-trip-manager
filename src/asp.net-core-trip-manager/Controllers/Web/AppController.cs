@@ -1,4 +1,5 @@
-﻿using asp.net_core_trip_manager.Services;
+﻿using asp.net_core_trip_manager.Models;
+using asp.net_core_trip_manager.Services;
 using asp.net_core_trip_manager.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,16 +14,19 @@ namespace asp.net_core_trip_manager.Controllers.Web
     {
         private IMailService _mailService;
         private IConfigurationRoot _config;
+        private TripContext _context;
 
-        public AppController(IMailService mailService, IConfigurationRoot config)
+        public AppController(IMailService mailService, IConfigurationRoot config, TripContext context)
         {
             _mailService = mailService;
             _config = config;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var data = _context.Trips.ToList();
+            return View(data);
         }
 
         public IActionResult Contact()

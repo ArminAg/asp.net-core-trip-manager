@@ -1,5 +1,8 @@
 ﻿{
   "MailSettings": {
     "ToAddress": "user@domain.com"
+  },
+  "ConnectionStrings": {
+    "TripContextConnection": "Server=ASUS\\SQLEXPRESS;Database=TripManager;Trusted_Connection=true;MultipleActiveResultSets=true;"
   }
 }

@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using asp.net_core_trip_manager.Services;
 using Microsoft.Extensions.Configuration;
+using asp.net_core_trip_manager.Models;
 
 namespace asp.net_core_trip_manager
 {
@@ -45,6 +46,8 @@ namespace asp.net_core_trip_manager
             {
                 // Implement Real Service
             }
+
+            services.AddDbContext<TripContext>();
             
             services.AddMvc();
         }
