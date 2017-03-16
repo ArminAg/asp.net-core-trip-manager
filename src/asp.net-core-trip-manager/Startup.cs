@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using asp.net_core_trip_manager.Persistence;
 using asp.net_core_trip_manager.Models;
 using Newtonsoft.Json.Serialization;
+using AutoMapper;
+using asp.net_core_trip_manager.Dtos;
 
 namespace asp.net_core_trip_manager
 {
@@ -69,6 +71,11 @@ namespace asp.net_core_trip_manager
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TripContextSeedData seeder)
         {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<TripDto, Trip>().ReverseMap();
+            });
+
             if (env.IsEnvironment("Development"))
             {
                 app.UseDeveloperExceptionPage();

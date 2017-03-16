@@ -1,6 +1,7 @@
 ﻿using asp.net_core_trip_manager.Dtos;
 using asp.net_core_trip_manager.Models;
 using asp.net_core_trip_manager.ViewModels;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,16 @@ namespace asp.net_core_trip_manager.Controllers.Api
         [HttpGet("")]
         public IActionResult Get()
         {
-            return Ok(_repository.GetAllTrips());
+            try
+            {
+                var trips = _repository.GetAllTrips();
+                return Ok(Mapper.Map<IEnumerable<TripDto>>(trips));
+            }
+            catch (Exception ex)
+            {
+                // TODO Logging
+                return BadRequest("Error occured");
+            }
         }
 
         [HttpPost("")]
@@ -30,7 +40,8 @@ namespace asp.net_core_trip_manager.Controllers.Api
         {
             if (ModelState.IsValid)
             {
-                return Created($"api/trips/{trip.Name}", trip);
+                var newTrip = Mapper.Map<Trip>(trip);
+                return Created($"api/trips/{trip.Name}", Mapper.Map<TripDto>(newTrip));
             }
             return BadRequest(ModelState);
         }
