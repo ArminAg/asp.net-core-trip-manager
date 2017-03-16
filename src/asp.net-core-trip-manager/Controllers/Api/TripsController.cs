@@ -3,6 +3,7 @@ using asp.net_core_trip_manager.Models;
 using asp.net_core_trip_manager.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,13 @@ namespace asp.net_core_trip_manager.Controllers.Api
     [Route("api/trips")]
     public class TripsController : Controller
     {
+        private ILogger<TripsController> _logger;
         private ITripRepository _repository;
 
-        public TripsController(ITripRepository repository)
+        public TripsController(ITripRepository repository, ILogger<TripsController> logger)
         {
             _repository = repository;
+            _logger = logger;
         }
 
         [HttpGet("")]
@@ -30,7 +33,7 @@ namespace asp.net_core_trip_manager.Controllers.Api
             }
             catch (Exception ex)
             {
-                // TODO Logging
+                _logger.LogError($"Failed to get all Trips: {ex}");
                 return BadRequest("Error occured");
             }
         }
