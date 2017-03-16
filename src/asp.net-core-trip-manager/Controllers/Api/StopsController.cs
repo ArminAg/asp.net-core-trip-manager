@@ -14,11 +14,11 @@ namespace asp.net_core_trip_manager.Controllers.Api
     [Route("/api/trips/{tripName}/stops")]
     public class StopsController : Controller
     {
-        private BingGeoCoordsService _coordsService;
+        private GMapsGeoCoordsService _coordsService;
         private ILogger<StopsController> _logger;
         private ITripRepository _repository;
 
-        public StopsController(ITripRepository repository, ILogger<StopsController> logger, BingGeoCoordsService coordsService)
+        public StopsController(ITripRepository repository, ILogger<StopsController> logger, GMapsGeoCoordsService coordsService)
         {
             _repository = repository;
             _logger = logger;
