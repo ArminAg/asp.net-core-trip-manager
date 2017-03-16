@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace asp.net_core_trip_manager.Services
 {
-    public class GMapsGeoCoordsService
+    public class GMapsGeoCoordsService : IGeoCoordsService
     {
         private IConfigurationRoot _config;
         private ILogger<GMapsGeoCoordsService> _logger;

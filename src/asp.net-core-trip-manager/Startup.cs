@@ -57,7 +57,7 @@ namespace asp.net_core_trip_manager
             services.AddScoped<ITripRepository, TripRepository>();
 
             // When we need it create a new copy
-            services.AddTransient<GMapsGeoCoordsService>();
+            services.AddTransient<IGeoCoordsService, GMapsGeoCoordsService>();
 
             // Create this every time we need it
             services.AddTransient<TripContextSeedData>();

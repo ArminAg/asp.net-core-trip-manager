@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace asp.net_core_trip_manager.Services
 {
-    public class BingGeoCoordsService
+    public class BingGeoCoordsService : IGeoCoordsService
     {
         private IConfigurationRoot _config;
         private ILogger<BingGeoCoordsService> _logger;
