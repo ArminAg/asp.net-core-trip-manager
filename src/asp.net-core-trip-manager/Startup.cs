@@ -56,6 +56,9 @@ namespace asp.net_core_trip_manager
             // Create one per request cycle
             services.AddScoped<ITripRepository, TripRepository>();
 
+            // When we need it create a new copy
+            services.AddTransient<BingGeoCoordsService>();
+
             // Create this every time we need it
             services.AddTransient<TripContextSeedData>();
 
@@ -74,6 +77,7 @@ namespace asp.net_core_trip_manager
             Mapper.Initialize(config =>
             {
                 config.CreateMap<TripDto, Trip>().ReverseMap();
+                config.CreateMap<StopDto, Stop>().ReverseMap();
             });
 
             if (env.IsEnvironment("Development"))

@@ -4,5 +4,8 @@
   },
   "ConnectionStrings": {
     "TripContextConnection": "Server=ASUS\\SQLEXPRESS;Database=TripManager;Trusted_Connection=true;MultipleActiveResultSets=true;"
+  },
+  "Keys": {
+    "BingKey": "YOUR_API_KEY"
   }
 }

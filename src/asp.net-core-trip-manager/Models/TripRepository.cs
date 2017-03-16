@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,31 @@ namespace asp.net_core_trip_manager.Models
             _context.Add(trip);
         }
 
+        public void AddStop(string tripName, Stop newStop)
+        {
+            var trip = GetTripByName(tripName);
+
+            if (trip != null)
+            {
+                // Foreign Key being set
+                trip.Stops.Add(newStop);
+                // Added as new object
+                _context.Stops.Add(newStop);
+            }
+        }
+
         public IEnumerable<Trip> GetAllTrips()
         {
             _logger.LogInformation("Getting All Trips from the Database");
             return _context.Trips.ToList();
+        }
+
+        public Trip GetTripByName(string tripName)
+        {
+            return _context.Trips
+                .Include(t => t.Stops)
+                .Where(t => t.Name == tripName)
+                .FirstOrDefault();
         }
 
         public async Task<bool> SaveChangesAsync()
