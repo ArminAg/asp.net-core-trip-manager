@@ -30,7 +30,7 @@ namespace asp.net_core_trip_manager.Controllers.Api
         {
             try
             {
-                var trips = _repository.GetAllTrips();
+                var trips = _repository.GetTripsByUsername(User.Identity.Name);
                 return Ok(Mapper.Map<IEnumerable<TripDto>>(trips));
             }
             catch (Exception ex)
@@ -46,6 +46,7 @@ namespace asp.net_core_trip_manager.Controllers.Api
             if (ModelState.IsValid)
             {
                 var newTrip = Mapper.Map<Trip>(trip);
+                newTrip.UserName = User.Identity.Name;
                 _repository.Add(newTrip);
 
                 if (await _repository.SaveChangesAsync())

@@ -50,6 +50,14 @@ namespace asp.net_core_trip_manager.Models
                 .FirstOrDefault();
         }
 
+        public IEnumerable<Trip> GetTripsByUsername(string name)
+        {
+            return _context.Trips
+                .Include(t => t.Stops)
+                .Where(t => t.UserName == name)
+                .ToList();
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return await (_context.SaveChangesAsync()) > 0;
