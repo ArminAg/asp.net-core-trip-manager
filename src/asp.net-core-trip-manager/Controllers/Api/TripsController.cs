@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace asp.net_core_trip_manager.Controllers.Api
 {
-    [Route("api/trips")]
     [Authorize]
+    [Route("api/trips")]
     public class TripsController : Controller
     {
         private ILogger<TripsController> _logger;

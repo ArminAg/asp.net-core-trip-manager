@@ -23,9 +23,9 @@ namespace asp.net_core_trip_manager.Models
             _context.Add(trip);
         }
 
-        public void AddStop(string tripName, Stop newStop)
+        public void AddStop(string tripName, Stop newStop, string username)
         {
-            var trip = GetTripByName(tripName);
+            var trip = GetUserTripByName(tripName, username);
 
             if (trip != null)
             {
@@ -56,6 +56,14 @@ namespace asp.net_core_trip_manager.Models
                 .Include(t => t.Stops)
                 .Where(t => t.UserName == name)
                 .ToList();
+        }
+
+        public Trip GetUserTripByName(string tripName, string username)
+        {
+            return _context.Trips
+                .Include(t => t.Stops)
+                .Where(t => t.Name == tripName && t.UserName == username)
+                .FirstOrDefault();
         }
 
         public async Task<bool> SaveChangesAsync()
