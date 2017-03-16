@@ -4,15 +4,17 @@
 }
 
 <div id="shadow" class="section scrollspy">
-    <form method="post" class="col s12">
+    <form method="post" class="col s6">
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
                 <input asp-for="Name" id="name" type="text">
                 <label asp-for="Name" for="name">Name</label>
                 <span asp-validation-for="Name"></span>
             </div>
-            <div class="input-field col s6">
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
                 <i class="material-icons prefix">mail</i>
                 <input asp-for="Email" id="email" type="email">
                 <label asp-for="Email" for="email">Email</label>
@@ -28,8 +30,8 @@
             </div>
         </div>
         <div class="row">
-            <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
-                Submit
+            <button class="btn waves-effect waves-light btn-large form-button" type="submit" name="action">
+                Send
                 <i class="material-icons right">send</i>
             </button>
         </div>

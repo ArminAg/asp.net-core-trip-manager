@@ -1,4 +1,6 @@
-﻿body {
+﻿
+/* Materialize Overrides */
+body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -7,6 +9,15 @@
 
 main {
     flex: 1 0 auto;
+}
+
+nav {
+    background-color: #009688;
+}
+
+.section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 header, main, footer {
@@ -46,6 +57,7 @@ nav.top-nav {
 
 footer.page-footer {
     padding-top: 0;
+    background-color: #00897b;
 }
 
 /* Page Specific */
@@ -62,4 +74,8 @@ footer.page-footer {
     color: #F44336;
     font-size: 12px;
     margin-left: 45px;
+}
+
+.form-button {
+    margin-left: 55px;
 }
