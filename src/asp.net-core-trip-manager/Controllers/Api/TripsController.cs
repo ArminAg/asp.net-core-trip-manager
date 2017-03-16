@@ -39,14 +39,18 @@ namespace asp.net_core_trip_manager.Controllers.Api
         }
 
         [HttpPost("")]
-        public IActionResult Post([FromBody]TripDto trip)
+        public async Task<IActionResult> Post([FromBody]TripDto trip)
         {
             if (ModelState.IsValid)
             {
                 var newTrip = Mapper.Map<Trip>(trip);
-                return Created($"api/trips/{trip.Name}", Mapper.Map<TripDto>(newTrip));
+                _repository.Add(newTrip);
+
+                if (await _repository.SaveChangesAsync())
+                    return Created($"api/trips/{trip.Name}", Mapper.Map<TripDto>(newTrip));
+                
             }
-            return BadRequest(ModelState);
+            return BadRequest("Failed to save the trip");
         }
     }
 }

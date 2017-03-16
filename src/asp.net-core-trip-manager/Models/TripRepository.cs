@@ -17,10 +17,20 @@ namespace asp.net_core_trip_manager.Models
             _logger = logger;
         }
 
+        public void Add(Trip trip)
+        {
+            _context.Add(trip);
+        }
+
         public IEnumerable<Trip> GetAllTrips()
         {
             _logger.LogInformation("Getting All Trips from the Database");
             return _context.Trips.ToList();
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await (_context.SaveChangesAsync()) > 0;
         }
     }
 }
