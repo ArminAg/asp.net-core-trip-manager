@@ -16,6 +16,7 @@ using AutoMapper;
 using asp.net_core_trip_manager.Dtos;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace asp.net_core_trip_manager
 {
@@ -58,6 +59,22 @@ namespace asp.net_core_trip_manager
                 config.User.RequireUniqueEmail = true;
                 config.Password.RequiredLength = 8;
                 config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+                // Set of callbacks while the authentication is happening
+                config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = async ctx =>
+                    {
+                        if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                        {
+                            ctx.Response.StatusCode = 401;
+                        }
+                        else
+                        {
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                        }
+                        await Task.Yield();
+                    }
+                };
             })
             .AddEntityFrameworkStores<TripContext>();
 
@@ -73,7 +90,7 @@ namespace asp.net_core_trip_manager
             services.AddTransient<TripContextSeedData>();
 
             services.AddLogging();
-            
+
             services.AddMvc(config =>
             {
                 if (_env.IsProduction())
@@ -105,7 +122,7 @@ namespace asp.net_core_trip_manager
             {
                 loggerFactory.AddDebug(LogLevel.Error);
             }
-            
+
             app.UseStaticFiles();
 
             app.UseIdentity();
