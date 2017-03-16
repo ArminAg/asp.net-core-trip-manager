@@ -20,8 +20,16 @@
         <ul id="nav-mobile" class="side-nav fixed">
             <li class="logo">
                 <a href="" id="logo-container" class="brand-logo">
-                    <img class="img-circle" src="~/img/user.png" alt="" />
-                    <span id="username">Armin Aganbegović</span>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <img class="img-circle" src="~/img/user.png" alt="profile" />
+                        <span id="username">@User.Identity.Name</span>
+                    }
+                    else
+                    {
+                        <img src="~/img/map.png" alt="logo" />
+                        <span id="username">Trip Manager</span>
+                    }
                 </a>
             </li>
             <li class="bold">
@@ -33,6 +41,15 @@
             <li class="bold">
                 <a asp-controller="App" asp-action="Contact" class="waves-effect waves-teal">Contact</a>
             </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="bold">
+                    <a asp-controller="App" asp-action="Trips" class="waves-effect waves-teal">Trips</a>
+                </li>
+                <li class="bold">
+                    <a asp-controller="Auth" asp-action="Logout" class="waves-effect waves-teal">Logout</a>
+                </li>
+            }
         </ul>
     </header>
     <main>

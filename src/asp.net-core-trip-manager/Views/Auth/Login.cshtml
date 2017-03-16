@@ -1,0 +1,36 @@
+﻿@model asp.net_core_trip_manager.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="section scrollspy">
+    <form method="post" class="col s6">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input asp-for="Username" id="username" type="text">
+                <label asp-for="Username" for="username">User name</label>
+                <span asp-validation-for="Username"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">lock</i>
+                <input asp-for="Password" id="password" type="password">
+                <label asp-for="Password" for="password">Password</label>
+                <span asp-validation-for="Password"></span>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light btn-large form-button" type="submit" name="action">
+                Login
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
