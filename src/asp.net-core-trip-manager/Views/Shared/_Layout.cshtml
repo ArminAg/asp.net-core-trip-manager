@@ -18,38 +18,34 @@
             </div>
         </nav>
         <ul id="nav-mobile" class="side-nav fixed">
-            <li class="logo">
-                <a href="" id="logo-container" class="brand-logo">
+            <li>
+                <div class="userView">
+                    <div class="background">
+                        <img src="~/img/background.png">
+                    </div>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <img class="img-circle" src="~/img/user.png" alt="profile" />
-                        <span id="username">@User.Identity.Name</span>
+                        <a href="#!user"><img class="circle" src="~/img/user.png"></a>
+                        <a href="#!name"><span class="white-text name">@User.Identity.Name</span></a>
                     }
                     else
                     {
-                        <img src="~/img/map.png" alt="logo" />
-                        <span id="username">Trip Manager</span>
+                        <a href="#!user"><img class="circle" src="~/img/map-marker-icon.png"></a>
+                        <a href="#!name"><span class="white-text name">Trip Manager</span></a>
                     }
-                </a>
+                </div>
             </li>
-            <li class="bold">
-                <a asp-controller="App" asp-action="Index" class="waves-effect waves-teal">Home</a>
-            </li>
-            <li class="bold">
-                <a asp-controller="App" asp-action="About" class="waves-effect waves-teal">About</a>
-            </li>
-            <li class="bold">
-                <a asp-controller="App" asp-action="Contact" class="waves-effect waves-teal">Contact</a>
-            </li>
+            <li><a asp-controller="App" asp-action="Index" class="waves-effect waves-teal"><i class="material-icons">business</i>Home</a></li>
             @if (User.Identity.IsAuthenticated)
             {
-                <li class="bold">
-                    <a asp-controller="App" asp-action="Trips" class="waves-effect waves-teal">Trips</a>
-                </li>
-                <li class="bold">
-                    <div class="divider"></div>
-                    <a asp-controller="Auth" asp-action="Logout" class="waves-effect waves-teal">Logout</a>
-                </li>
+                <li><a asp-controller="App" asp-action="Trips" class="waves-effect waves-teal"><i class="material-icons">location_on</i>Trips</a></li>
+            }
+            <li><a asp-controller="App" asp-action="About" class="waves-effect waves-teal"><i class="material-icons">comment</i>About</a></li>
+            <li><a asp-controller="App" asp-action="Contact" class="waves-effect waves-teal"><i class="material-icons">phone</i>Contact</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><div class="divider"></div></li>
+                <li><a asp-controller="Auth" asp-action="Logout" class="waves-effect waves-teal"><i class="material-icons">lock</i>Logout</a></li>
             }
         </ul>
     </header>

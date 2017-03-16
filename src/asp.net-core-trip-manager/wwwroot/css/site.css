@@ -46,14 +46,24 @@ nav.top-nav {
         font-size: 48px;
     }
 
-#logo-container {
+.background img {
+    width: 100%;
     height: auto;
 }
 
-    #logo-container img {
-        width: 170px;
-        height: auto;
-    }
+.side-nav .userView .circle {
+    height: 81px;
+    width: 81px;
+}
+
+.side-nav .userView .name {
+    padding-bottom: 16px;
+}
+
+.logo {
+    height: 81px;
+    width: auto;
+}
 
 footer.page-footer {
     padding-top: 0;
@@ -61,14 +71,6 @@ footer.page-footer {
 }
 
 /* Page Specific */
-#username {
-    display: block;
-    font-size: 20px;
-}
-
-.img-circle {
-    border-radius: 50%;
-}
 
 .field-validation-error {
     color: #F44336;
