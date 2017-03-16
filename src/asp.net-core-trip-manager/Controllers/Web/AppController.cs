@@ -4,6 +4,7 @@ using asp.net_core_trip_manager.Services;
 using asp.net_core_trip_manager.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,29 @@ namespace asp.net_core_trip_manager.Controllers.Web
         private IMailService _mailService;
         private IConfigurationRoot _config;
         private ITripRepository _repository;
+        private ILogger<AppController> _logger;
 
-        public AppController(IMailService mailService, IConfigurationRoot config, ITripRepository repository)
+        public AppController(IMailService mailService, IConfigurationRoot config, ITripRepository repository, ILogger<AppController> logger)
         {
             _mailService = mailService;
             _config = config;
             _repository = repository;
+            _logger = logger;
         }
 
         public IActionResult Index()
         {
-            var trips = _repository.GetAllTrips();
-            return View(trips);
+            try
+            {
+                var trips = _repository.GetAllTrips();
+                return View(trips);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get trips in Index Page: {ex.Message}");
+                return Redirect("/error");
+            }
+            
         }
 
         public IActionResult Contact()

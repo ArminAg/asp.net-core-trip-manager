@@ -55,6 +55,8 @@ namespace asp.net_core_trip_manager
 
             // Create this every time we need it
             services.AddTransient<TripContextSeedData>();
+
+            services.AddLogging();
             
             services.AddMvc();
         }
@@ -63,7 +65,14 @@ namespace asp.net_core_trip_manager
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TripContextSeedData seeder)
         {
             if (env.IsEnvironment("Development"))
+            {
                 app.UseDeveloperExceptionPage();
+                loggerFactory.AddDebug(LogLevel.Information);
+            }
+            else
+            {
+                loggerFactory.AddDebug(LogLevel.Error);
+            }
             
             app.UseStaticFiles();
 
