@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace asp.net_core_trip_manager.Models
 {
-    public class TripContext : DbContext
+    public class TripContext : IdentityDbContext<ApplicationUser>
     {
         private IConfigurationRoot _config;
 

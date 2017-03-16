@@ -2,6 +2,7 @@
 using asp.net_core_trip_manager.Persistence;
 using asp.net_core_trip_manager.Services;
 using asp.net_core_trip_manager.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -29,6 +30,12 @@ namespace asp.net_core_trip_manager.Controllers.Web
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Trips()
+        {
             try
             {
                 var trips = _repository.GetAllTrips();
@@ -39,7 +46,6 @@ namespace asp.net_core_trip_manager.Controllers.Web
                 _logger.LogError($"Failed to get trips in Index Page: {ex.Message}");
                 return Redirect("/error");
             }
-            
         }
 
         public IActionResult Contact()

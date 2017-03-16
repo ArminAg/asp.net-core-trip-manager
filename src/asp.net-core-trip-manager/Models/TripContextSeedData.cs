@@ -1,4 +1,5 @@
 ﻿using asp.net_core_trip_manager.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +10,34 @@ namespace asp.net_core_trip_manager.Persistence
     public class TripContextSeedData
     {
         private TripContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public TripContextSeedData(TripContext context)
+        public TripContextSeedData(TripContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task EnsureSeedData()
         {
+            if (await _userManager.FindByEmailAsync("user1@domain.com") == null)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = "user1",
+                    Email = "user1@domain.com"
+                };
+
+                await _userManager.CreateAsync(user, "P@ssw0rd!");
+            }
+
             if (!_context.Trips.Any())
             {
                 var londonTrip = new Trip
                 {
                     DateCreated = DateTime.UtcNow,
                     Name = "London Trip",
-                    UserName = "", // TODO Add UserName
+                    UserName = "user1",
                     Stops = new List<Stop>
                     {
                         new Stop { Name="Big Ben", Arrival = new DateTime(2017, 3, 4), Latitude = 51.500766, Longitude= -0.124264, Order = 1 },
@@ -41,7 +55,7 @@ namespace asp.net_core_trip_manager.Persistence
                 {
                     DateCreated = DateTime.UtcNow,
                     Name = "Bali Trip",
-                    UserName = "", // TODO Add UserName
+                    UserName = "user1",
                     Stops = new List<Stop>
                     {
                         new Stop { Name="Nusa Dua", Arrival = new DateTime(2016, 6, 4), Latitude = -8.817335, Longitude= 115.218294, Order = 1 },

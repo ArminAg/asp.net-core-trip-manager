@@ -14,6 +14,7 @@ using asp.net_core_trip_manager.Models;
 using Newtonsoft.Json.Serialization;
 using AutoMapper;
 using asp.net_core_trip_manager.Dtos;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace asp.net_core_trip_manager
 {
@@ -50,6 +51,14 @@ namespace asp.net_core_trip_manager
             {
                 // Implement Real Service
             }
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            })
+            .AddEntityFrameworkStores<TripContext>();
 
             services.AddDbContext<TripContext>();
 
@@ -91,6 +100,8 @@ namespace asp.net_core_trip_manager
             }
             
             app.UseStaticFiles();
+
+            app.UseIdentity();
 
             app.UseMvc(config =>
             {
