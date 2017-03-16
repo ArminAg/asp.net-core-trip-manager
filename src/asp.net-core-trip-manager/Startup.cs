@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using asp.net_core_trip_manager.Services;
 using Microsoft.Extensions.Configuration;
+using asp.net_core_trip_manager.Persistence;
 using asp.net_core_trip_manager.Models;
 
 namespace asp.net_core_trip_manager
@@ -48,12 +49,18 @@ namespace asp.net_core_trip_manager
             }
 
             services.AddDbContext<TripContext>();
+
+            // Create one per request cycle
+            services.AddScoped<ITripRepository, TripRepository>();
+
+            // Create this every time we need it
+            services.AddTransient<TripContextSeedData>();
             
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TripContextSeedData seeder)
         {
             if (env.IsEnvironment("Development"))
                 app.UseDeveloperExceptionPage();
@@ -68,6 +75,8 @@ namespace asp.net_core_trip_manager
                     defaults: new { controller = "App", action = "Index" }
                     );
             });
+
+            seeder.EnsureSeedData().Wait();
         }
     }
 }
