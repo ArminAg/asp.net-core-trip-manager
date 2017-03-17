@@ -30,7 +30,7 @@
         vm.addTrip = function () {
             vm.isBusy = true;
             vm.errorMessage = "";
-
+            console.log(vm.newTrip);
             $http.post("/api/trips", vm.newTrip)
                 .then(function (response) {
                     // Success

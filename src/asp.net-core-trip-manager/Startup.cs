@@ -90,7 +90,7 @@ namespace asp.net_core_trip_manager
             services.AddTransient<TripContextSeedData>();
 
             services.AddLogging();
-
+            
             services.AddMvc(config =>
             {
                 if (_env.IsProduction())

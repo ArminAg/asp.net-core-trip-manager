@@ -10,10 +10,10 @@
             </div>
             <div class="input-field col s12 m5">
                 <i class="material-icons prefix">today</i>
-                <input id="name" name="name" type="text" ng-model="vm.newTrip.name" required ng-minlength="5">
-                <label for="name">Date</label>
-                <span ng-show="newTripForm.name.$dirty && newTripForm.name.$error.required">Name is required</span>
-                <span ng-show="newTripForm.name.$dirty && newTripForm.name.$error.minlength">Name must be at least 5 characters</span>
+                <input id="dateCreated" name="dateCreated" type="text" ng-model="vm.newTrip.dateCreated" required ng-pattern="/^(\d{2})\/(\d{2})\/(\d{4})$/">
+                <label for="dateCreated">Date</label>
+                <span ng-show="newTripForm.dateCreated.$dirty && newTripForm.dateCreated.$error.required">Date is required</span>
+                <span ng-show="newTripForm.dateCreated.$dirty && newTripForm.dateCreated.$error.pattern">Date must be in valid format MM/DD/YYYY</span>
             </div>
             <div class="col s12 m2">
                 <button class="btn waves-effect waves-light btn-large" type="submit" name="action" ng-disabled="newTripForm.$invalid">

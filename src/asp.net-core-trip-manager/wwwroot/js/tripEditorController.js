@@ -20,6 +20,8 @@
             .then(function (response) {
                 // Success
                 angular.copy(response.data, vm.stops);
+                console.log(response.data);
+                console.log(vm.stops);
                 _showMap(vm.stops);
             }, function (error) {
                 // Failure

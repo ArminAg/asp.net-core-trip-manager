@@ -16,7 +16,7 @@
                 <input id="arrival" name="arrival" type="text" ng-model="vm.newStop.arrival" required ng-pattern="/^(\d{2})\/(\d{2})\/(\d{4})$/">
                 <label for="arrival">Arrival</label>
                 <span ng-show="newStopForm.arrival.$dirty && newStopForm.arrival.$error.required">Arrival is required</span>
-                <span ng-show="newStopForm.arrival.$dirty && newStopForm.arrival.$error.pattern">Arrival is not in correct format MM/DD/YYYY</span>
+                <span ng-show="newStopForm.arrival.$dirty && newStopForm.arrival.$error.pattern">Arrival must be in valid format MM/DD/YYYY</span>
             </div>
             <div class="col s12 m2">
                 <button class="btn waves-effect waves-light btn-large" type="submit" name="action" ng-disabled="newStopForm.$invalid">
