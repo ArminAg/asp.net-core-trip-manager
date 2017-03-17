@@ -42,17 +42,21 @@
             }
             <li><a asp-controller="App" asp-action="About" class="waves-effect waves-teal"><i class="material-icons">subject</i>About</a></li>
             <li><a asp-controller="App" asp-action="Contact" class="waves-effect waves-teal"><i class="material-icons">phone</i>Contact</a></li>
+            <li><div class="divider"></div></li>
             @if (User.Identity.IsAuthenticated)
             {
-                <li><div class="divider"></div></li>
                 <li><a asp-controller="Auth" asp-action="Logout" class="waves-effect waves-teal"><i class="material-icons">lock</i>Logout</a></li>
+            }
+            else
+            {
+                <li><a asp-controller="Auth" asp-action="Login" class="waves-effect waves-teal"><i class="material-icons">lock</i>Login</a></li>
             }
         </ul>
     </header>
     <main>
         <div class="container">
             <div class="row">
-                <div class="col s12 m9 l12">
+                <div class="col s12">
                     @RenderBody()
                 </div>
             </div>
