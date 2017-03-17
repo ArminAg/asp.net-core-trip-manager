@@ -1,6 +1,7 @@
 ﻿<div>
     <a href="#!/" class="btn">Back</a>
     <h2 class="header">{{ vm.tripName }}</h2>
+    
     <div class="col s12">
         <wait-cursor display-when="vm.isBusy"></wait-cursor>
         <p ng-show="vm.errorMessage">{{ vm.errorMessage }}</p>
@@ -15,4 +16,5 @@
             <td>{{ stop.arrival | date:shortDate }}</td>
         </tr>
     </table>
+    <div id="map"></div>
 </div>

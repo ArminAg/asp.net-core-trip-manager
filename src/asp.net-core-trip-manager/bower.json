@@ -8,6 +8,7 @@
     "jquery-validation": "~1.16.0",
     "jquery-validation-unobtrusive": "~3.2.6",
     "angular": "1.6.3",
-    "angular-route": "1.6.3"
+    "angular-route": "1.6.3",
+    "travelmap": "~1.0.2"
   }
 }
