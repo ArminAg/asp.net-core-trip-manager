@@ -2,6 +2,34 @@
     <a href="#!/" class="btn">Back</a>
     <h2 class="header">{{ vm.tripName }}</h2>
     
+    <form name="newStopForm" method="post" class="col s12" ng-submit="vm.addStop()">
+        <div class="row">
+            <div class="input-field col s12 m5">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="name" name="name" type="text" ng-model="vm.newStop.name" required ng-minlength="2">
+                <label for="name">Name</label>
+                <span ng-show="newStopForm.name.$dirty && newStopForm.name.$error.required">Name is required</span>
+                <span ng-show="newStopForm.name.$dirty && newStopForm.name.$error.minlength">Name must be at least 2 characters</span>
+            </div>
+            <div class="input-field col s12 m5">
+                <i class="material-icons prefix">today</i>
+                <input id="arrival" name="arrival" type="text" ng-model="vm.newStop.arrival" required ng-pattern="/^(\d{2})\/(\d{2})\/(\d{4})$/">
+                <label for="arrival">Arrival</label>
+                <span ng-show="newStopForm.arrival.$dirty && newStopForm.arrival.$error.required">Arrival is required</span>
+                <span ng-show="newStopForm.arrival.$dirty && newStopForm.arrival.$error.pattern">Arrival is not in correct format MM/DD/YYYY</span>
+            </div>
+            <div class="col s12 m2">
+                <button class="btn waves-effect waves-light btn-large" type="submit" name="action" ng-disabled="newStopForm.$invalid">
+                    Add
+                </button>
+            </div>
+            <div class="col s12">
+                <wait-cursor display-when="vm.isBusy"></wait-cursor>
+                <p ng-show="vm.errorMessage">{{ vm.errorMessage }}</p>
+            </div>
+        </div>
+    </form>
+
     <div class="col s12">
         <wait-cursor display-when="vm.isBusy"></wait-cursor>
         <p ng-show="vm.errorMessage">{{ vm.errorMessage }}</p>
