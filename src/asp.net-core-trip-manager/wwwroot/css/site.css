@@ -1,5 +1,8 @@
 ﻿
 /* Materialize Overrides */
+html {
+    color: #34495e;
+}
 body {
     display: flex;
     min-height: 100vh;

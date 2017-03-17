@@ -1,3 +1,54 @@
 ﻿@{
-    ViewBag.Title = "Trips";
+    ViewBag.Title = "My Trips";
 }
+
+@section scripts{
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/js/simpleControls.js"></script>
+    <script src="~/js/app-trips.js"></script>
+    <script src="~/js/tripsController.js"></script>
+}
+
+<div class="section scrollspy" ng-app="app-trips">
+    <div ng-controller="tripsController as vm">
+
+        <form name="newTripForm" method="post" class="col s12" ng-submit="vm.addTrip()">
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="name" name="name" type="text" ng-model="vm.newTrip.name" required ng-minlength="5">
+                    <label for="name">Name</label>
+                    <span ng-show="newTripForm.name.$dirty && newTripForm.name.$error.required">Name is required</span>
+                    <span ng-show="newTripForm.name.$dirty && newTripForm.name.$error.minlength">Name must be at least 5 characters</span>
+                </div>
+                <div class="col s4">
+                    <button class="btn waves-effect waves-light btn-large" type="submit" name="action" ng-disabled="newTripForm.$invalid">
+                        Add
+                    </button>
+                </div>
+                <div class="col s12">
+                    <wait-cursor display-when="vm.isBusy"></wait-cursor>
+                    <p ng-show="vm.errorMessage">{{ vm.errorMessage }}</p>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col s12 m4" ng-repeat="trip in vm.trips">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/img/background.png">
+                        <span class="card-title">{{ trip.name }}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Trip Date: <strong>{{ trip.dateCreated | date:'dd.MM.yyyy' }}</strong></p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="teal-text">Manage</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
