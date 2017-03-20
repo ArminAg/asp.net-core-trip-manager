@@ -12,7 +12,7 @@
 
         vm.newTrip = {};
         $(".page-title").text("My Trips");
-        vm.errorMessage = "";
+        
         vm.isBusy = true;
 
         $http.get("/api/trips")
@@ -21,7 +21,7 @@
                 angular.copy(response.data, vm.trips);
             }, function (error) {
                 // Failure
-                vm.errorMessage = "Failed to load data: " + error;
+                Materialize.toast("Failed to load data: " + error, 3000);
             })
             .finally(function () {
                 vm.isBusy = false;
@@ -29,7 +29,7 @@
 
         vm.addTrip = function () {
             vm.isBusy = true;
-            vm.errorMessage = "";
+            
             console.log(vm.newTrip);
             $http.post("/api/trips", vm.newTrip)
                 .then(function (response) {
@@ -40,7 +40,7 @@
                     $scope.newTripForm.$setPristine();
                 }, function (error) {
                     // Failure
-                    vm.errorMessage = "Failed to save new Trip";
+                    Materialize.toast("Failed to save new Trip", 3000);
                 })
                 .finally(function () {
                     vm.isBusy = false;

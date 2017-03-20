@@ -11,7 +11,6 @@
         vm.tripName = $routeParams.tripName;
         $(".page-title").text(vm.tripName);
         vm.stops = [];
-        vm.errorMessage = "";
         vm.isBusy = true;
         vm.newStop = {};
 
@@ -26,7 +25,7 @@
                 _showMap(vm.stops);
             }, function (error) {
                 // Failure
-                vm.errorMessage = "Failed to load stops";
+                Materialize.toast("Failed to load Stops", 3000);
             })
             .finally(function () {
                 vm.isBusy = false;
@@ -34,7 +33,6 @@
 
         vm.addStop = function () {
             vm.isBusy = true;
-            vm.errorMessage = "";
             $http.post(url, vm.newStop)
                 .then(function (response) {
                     // Success
@@ -45,7 +43,7 @@
                     $scope.newStopForm.$setPristine();
                 }, function () {
                     // Failure
-                    vm.errorMessage = "Failed to add new stop";
+                    Materialize.toast("Failed to add new Stop", 3000);
                 })
                 .finally(function () {
                     vm.isBusy = false;
