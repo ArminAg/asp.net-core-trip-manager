@@ -1,0 +1,50 @@
+﻿@model asp.net_core_trip_manager.Core.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="row">
+    <div class="col s12">
+        <h3 class="header">Enter data</h3>
+    </div>
+    <form method="post" class="col s12">
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">email</i>
+                <input asp-for="Email" id="email" type="text">
+                <label asp-for="Email" for="email">Email</label>
+                <span asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">vpn_key</i>
+                <input asp-for="Password" id="password" type="password">
+                <label asp-for="Password" for="password">Password</label>
+                <span asp-validation-for="Password"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">vpn_key</i>
+                <input asp-for="ConfirmPassword" id="confirmPassword" type="password">
+                <label asp-for="ConfirmPassword" for="confirmPassword">ConfirmPassword</label>
+                <span asp-validation-for="ConfirmPassword"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
+                    Register
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
