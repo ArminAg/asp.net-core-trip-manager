@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using asp.net_core_trip_manager.Models;
+using asp.net_core_trip_manager.Persistence;
 
 namespace asp.netcoretripmanager.Migrations
 {

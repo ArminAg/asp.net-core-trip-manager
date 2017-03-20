@@ -1,5 +1,5 @@
-﻿using asp.net_core_trip_manager.Models;
-using asp.net_core_trip_manager.ViewModels;
+﻿using asp.net_core_trip_manager.Core.Models;
+using asp.net_core_trip_manager.Core.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;

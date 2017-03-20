@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace asp.net_core_trip_manager.ViewModels
+namespace asp.net_core_trip_manager.Core.ViewModels
 {
     public class LoginViewModel
     {

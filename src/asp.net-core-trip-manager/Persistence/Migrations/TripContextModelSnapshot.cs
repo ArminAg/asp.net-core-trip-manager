@@ -3,15 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using asp.net_core_trip_manager.Models;
+using asp.net_core_trip_manager.Persistence;
 
 namespace asp.netcoretripmanager.Migrations
 {
     [DbContext(typeof(TripContext))]
-    [Migration("20170316181816_AddingIdentity")]
-    partial class AddingIdentity
+    partial class TripContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")

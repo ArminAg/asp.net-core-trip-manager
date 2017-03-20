@@ -1,4 +1,4 @@
-﻿namespace asp.net_core_trip_manager.Services
+﻿namespace asp.net_core_trip_manager.Core.Services
 {
     public class GeoCoordsResult
     {

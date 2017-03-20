@@ -1,7 +1,7 @@
-﻿using asp.net_core_trip_manager.Models;
+﻿using asp.net_core_trip_manager.Core.Models;
+using asp.net_core_trip_manager.Core.Services;
+using asp.net_core_trip_manager.Core.ViewModels;
 using asp.net_core_trip_manager.Persistence;
-using asp.net_core_trip_manager.Services;
-using asp.net_core_trip_manager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;

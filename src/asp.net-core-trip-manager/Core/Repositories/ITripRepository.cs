@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace asp.net_core_trip_manager.Models
+namespace asp.net_core_trip_manager.Core.Models
 {
     public interface ITripRepository
     {

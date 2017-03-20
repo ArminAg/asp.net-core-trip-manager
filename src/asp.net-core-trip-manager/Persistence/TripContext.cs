@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using asp.net_core_trip_manager.Core.Models;
 
-namespace asp.net_core_trip_manager.Models
+namespace asp.net_core_trip_manager.Persistence
 {
     public class TripContext : IdentityDbContext<ApplicationUser>
     {

@@ -7,16 +7,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using asp.net_core_trip_manager.Services;
 using Microsoft.Extensions.Configuration;
 using asp.net_core_trip_manager.Persistence;
-using asp.net_core_trip_manager.Models;
 using Newtonsoft.Json.Serialization;
 using AutoMapper;
-using asp.net_core_trip_manager.Dtos;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using asp.net_core_trip_manager.Core.Services;
+using asp.net_core_trip_manager.Persistence.Services;
+using asp.net_core_trip_manager.Core.Models;
+using asp.net_core_trip_manager.Persistence.Models;
+using asp.net_core_trip_manager.Core.Dtos;
 
 namespace asp.net_core_trip_manager
 {

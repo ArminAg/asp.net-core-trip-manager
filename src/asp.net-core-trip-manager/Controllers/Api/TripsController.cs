@@ -1,6 +1,5 @@
-﻿using asp.net_core_trip_manager.Dtos;
-using asp.net_core_trip_manager.Models;
-using asp.net_core_trip_manager.ViewModels;
+﻿using asp.net_core_trip_manager.Core.Dtos;
+using asp.net_core_trip_manager.Core.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

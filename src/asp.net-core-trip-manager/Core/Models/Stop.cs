@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace asp.net_core_trip_manager.Models
+namespace asp.net_core_trip_manager.Core.Models
 {
     public class Stop
     {

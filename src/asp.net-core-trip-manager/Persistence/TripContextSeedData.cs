@@ -1,4 +1,4 @@
-﻿using asp.net_core_trip_manager.Models;
+﻿using asp.net_core_trip_manager.Core.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

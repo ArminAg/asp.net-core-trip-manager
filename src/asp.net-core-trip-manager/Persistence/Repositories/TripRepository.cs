@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using asp.net_core_trip_manager.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace asp.net_core_trip_manager.Models
+namespace asp.net_core_trip_manager.Persistence.Models
 {
     public class TripRepository : ITripRepository
     {

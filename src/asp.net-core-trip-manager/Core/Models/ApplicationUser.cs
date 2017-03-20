@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace asp.net_core_trip_manager.Models
+namespace asp.net_core_trip_manager.Core.Models
 {
     public class ApplicationUser : IdentityUser
     {
