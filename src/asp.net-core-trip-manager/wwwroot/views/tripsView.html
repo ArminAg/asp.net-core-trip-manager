@@ -1,19 +1,22 @@
-﻿<div>
+﻿<div class="row">
+    <div class="col s12">
+        <h3 class="header">Add Trip</h3>
+    </div>
     <form name="newTripForm" method="post" class="col s12" ng-submit="vm.addTrip()">
         <div class="row">
             <div class="input-field col s12 m5">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="name" name="name" type="text" ng-model="vm.newTrip.name" required ng-minlength="5">
+                <i class="material-icons prefix">location_on</i>
+                <input id="name" name="name" type="text" ng-model="vm.newTrip.name" required ng-minlength="2">
                 <label for="name">Name</label>
-                <span ng-show="newTripForm.name.$dirty && newTripForm.name.$error.required">Name is required</span>
-                <span ng-show="newTripForm.name.$dirty && newTripForm.name.$error.minlength">Name must be at least 5 characters</span>
+                <span ng-show="newTripForm.name.$dirty && newTripForm.name.$error.required" class="field-validation-error">Name is required</span>
+                <span ng-show="newTripForm.name.$dirty && newTripForm.name.$error.minlength" class="field-validation-error">Name must be at least 2 characters</span>
             </div>
             <div class="input-field col s12 m5">
                 <i class="material-icons prefix">today</i>
                 <input id="dateCreated" name="dateCreated" type="text" ng-model="vm.newTrip.dateCreated" required ng-pattern="/^(\d{2})\/(\d{2})\/(\d{4})$/">
                 <label for="dateCreated">Date</label>
-                <span ng-show="newTripForm.dateCreated.$dirty && newTripForm.dateCreated.$error.required">Date is required</span>
-                <span ng-show="newTripForm.dateCreated.$dirty && newTripForm.dateCreated.$error.pattern">Date must be in valid format MM/DD/YYYY</span>
+                <span ng-show="newTripForm.dateCreated.$dirty && newTripForm.dateCreated.$error.required" class="field-validation-error">Date is required</span>
+                <span ng-show="newTripForm.dateCreated.$dirty && newTripForm.dateCreated.$error.pattern" class="field-validation-error">Date must be in valid format MM/DD/YYYY</span>
             </div>
             <div class="col s12 m2">
                 <button class="btn waves-effect waves-light btn-large" type="submit" name="action" ng-disabled="newTripForm.$invalid">
@@ -27,19 +30,15 @@
         </div>
     </form>
 
-    <div class="row">
-        <div class="col s12 m4" ng-repeat="trip in vm.trips">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../img/background.png">
-                    <span class="card-title">{{ trip.name }}</span>
-                </div>
-                <div class="card-content">
-                    <p>Trip Date: <strong>{{ trip.dateCreated | date:'dd.MM.yyyy' }}</strong></p>
-                </div>
-                <div class="card-action">
-                    <a ng-href="#!/editor/{{ trip.name }}" class="teal-text">Manage</a>
-                </div>
+    <div class="col s12 m4 scale-transition" ng-repeat="trip in vm.trips" ng-class="{'scale-in': $last}">
+        <div class="card">
+            <div class="card-image">
+                <img src="../img/background.png">
+                <span class="card-title">{{ trip.name }}</span>
+                <a ng-href="#!/editor/{{ trip.name }}" class="btn-floating halfway-fab waves-effect waves-light orange btn-large"><i class="material-icons">mode_edit</i></a>
+            </div>
+            <div class="card-content">
+                <p>Trip Date: <strong>{{ trip.dateCreated | date:'MM/dd/yyyy' }}</strong></p>
             </div>
         </div>
     </div>

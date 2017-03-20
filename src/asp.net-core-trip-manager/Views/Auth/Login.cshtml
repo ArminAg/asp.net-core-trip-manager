@@ -3,10 +3,13 @@
     ViewBag.Title = "Login";
 }
 
-<div class="section scrollspy">
-    <form method="post" class="col s6">
+<div class="row">
+    <div class="col s12">
+        <h3 class="header">Enter data</h3>
+    </div>
+    <form method="post" class="col s12">
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m8">
                 <i class="material-icons prefix">account_circle</i>
                 <input asp-for="Username" id="username" type="text">
                 <label asp-for="Username" for="username">User name</label>
@@ -14,7 +17,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m8">
                 <i class="material-icons prefix">lock</i>
                 <input asp-for="Password" id="password" type="password">
                 <label asp-for="Password" for="password">Password</label>
@@ -22,10 +25,12 @@
             </div>
         </div>
         <div class="row">
-            <button class="btn waves-effect waves-light btn-large form-button" type="submit" name="action">
-                Login
-                <i class="material-icons right">send</i>
-            </button>
+            <div class="col s12">
+                <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
+                    Login
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
         </div>
     </form>
 </div>

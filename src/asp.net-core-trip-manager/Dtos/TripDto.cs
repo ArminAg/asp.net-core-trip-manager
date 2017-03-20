@@ -9,7 +9,7 @@ namespace asp.net_core_trip_manager.Dtos
     public class TripDto
     {
         [Required]
-        [StringLength(100, MinimumLength = 5)]
+        [StringLength(100, MinimumLength = 2)]
         public string Name { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     }

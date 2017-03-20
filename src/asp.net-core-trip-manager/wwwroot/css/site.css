@@ -3,6 +3,7 @@
 html {
     color: #34495e;
 }
+
 body {
     display: flex;
     min-height: 100vh;
@@ -81,11 +82,23 @@ footer.page-footer {
     margin-left: 45px;
 }
 
-.form-button {
-    margin-left: 55px;
-}
-
 #map {
     width: 100%;
     height: 600px;
 }
+
+/* Current Map Marker Overrides */
+.travelmap-overlay {
+    font-size: 14px !important;
+    line-height: 19px !important;
+    opacity: 1 !important;
+    background: #34495e !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 10px !important;
+}
+
+.travelmap-overlay-arrow.travelmap-overlay-arrow-above {
+    border-top: 16px solid #34495e !important;
+}
+

@@ -3,11 +3,13 @@
     ViewBag.Title = "Contact";
 }
 
-<div class="section scrollspy">
-    <h3 class="header">Send us a Message</h3>
-    <form method="post" class="col s6">
+<div class="row">
+    <div class="col s12">
+        <h3 class="header">Send us a Message</h3>
+    </div>
+    <form method="post" class="col s12">
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m8">
                 <i class="material-icons prefix">account_circle</i>
                 <input asp-for="Name" id="name" type="text">
                 <label asp-for="Name" for="name">Name</label>
@@ -15,7 +17,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m8">
                 <i class="material-icons prefix">mail</i>
                 <input asp-for="Email" id="email" type="email">
                 <label asp-for="Email" for="email">Email</label>
@@ -23,7 +25,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m8">
                 <i class="material-icons prefix">mode_edit</i>
                 <textarea asp-for="Message" id="message" class="materialize-textarea"></textarea>
                 <label asp-for="Message" for="message">Message</label>
@@ -31,10 +33,12 @@
             </div>
         </div>
         <div class="row">
-            <button class="btn waves-effect waves-light btn-large form-button" type="submit" name="action">
-                Send
-                <i class="material-icons right">send</i>
-            </button>
+            <div class="col s12">
+                <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
+                    Send
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
         </div>
     </form>
 </div>
