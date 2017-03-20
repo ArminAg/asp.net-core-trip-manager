@@ -1,5 +1,6 @@
 ﻿using asp.net_core_trip_manager.Core.Dtos;
 using asp.net_core_trip_manager.Core.Models;
+using asp.net_core_trip_manager.Persistence;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,11 @@ namespace asp.net_core_trip_manager.Controllers.Api
     public class TripsController : Controller
     {
         private ILogger<TripsController> _logger;
-        private ITripRepository _repository;
+        private IUnitOfWork _unitOfWork;
 
-        public TripsController(ITripRepository repository, ILogger<TripsController> logger)
+        public TripsController(IUnitOfWork unitOfWork, ILogger<TripsController> logger)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
             _logger = logger;
         }
 
@@ -29,7 +30,7 @@ namespace asp.net_core_trip_manager.Controllers.Api
         {
             try
             {
-                var trips = _repository.GetTripsByUsername(User.Identity.Name);
+                var trips = _unitOfWork.Trips.GetTripsByUsername(User.Identity.Name);
                 return Ok(Mapper.Map<IEnumerable<TripDto>>(trips));
             }
             catch (Exception ex)
@@ -46,9 +47,9 @@ namespace asp.net_core_trip_manager.Controllers.Api
             {
                 var newTrip = Mapper.Map<Trip>(trip);
                 newTrip.UserName = User.Identity.Name;
-                _repository.Add(newTrip);
+                _unitOfWork.Trips.Add(newTrip);
 
-                if (await _repository.SaveChangesAsync())
+                if (await _unitOfWork.CompleteAsync())
                     return Created($"api/trips/{trip.Name}", Mapper.Map<TripDto>(newTrip));
                 
             }

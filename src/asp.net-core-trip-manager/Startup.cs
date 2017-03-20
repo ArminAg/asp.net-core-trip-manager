@@ -17,8 +17,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using asp.net_core_trip_manager.Core.Services;
 using asp.net_core_trip_manager.Persistence.Services;
 using asp.net_core_trip_manager.Core.Models;
-using asp.net_core_trip_manager.Persistence.Models;
 using asp.net_core_trip_manager.Core.Dtos;
+using asp.net_core_trip_manager.Core.Repositories;
+using asp.net_core_trip_manager.Persistence.Repositories;
 
 namespace asp.net_core_trip_manager
 {
@@ -84,6 +85,8 @@ namespace asp.net_core_trip_manager
 
             // Create one per request cycle
             services.AddScoped<ITripRepository, TripRepository>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // When we need it create a new copy
             services.AddTransient<IGeoCoordsService, GMapsGeoCoordsService>();

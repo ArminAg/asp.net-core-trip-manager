@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using asp.net_core_trip_manager.Core.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace asp.net_core_trip_manager.Core.Models
+namespace asp.net_core_trip_manager.Core.Repositories
 {
     public interface ITripRepository
     {
@@ -11,6 +12,6 @@ namespace asp.net_core_trip_manager.Core.Models
         Trip GetUserTripByName(string tripName, string username);
         void Add(Trip trip);
         void AddStop(string tripName, Stop newStop, string username);
-        Task<bool> SaveChangesAsync();
+        //Task<bool> SaveChangesAsync();
     }
 }

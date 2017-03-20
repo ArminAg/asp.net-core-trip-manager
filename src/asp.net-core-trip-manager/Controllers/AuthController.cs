@@ -45,18 +45,12 @@ namespace asp.net_core_trip_manager.Controllers
                 if (signInResult.Succeeded)
                 {
                     if (string.IsNullOrWhiteSpace(returnUrl))
-                    {
                         return RedirectToAction("Trips", "App");
-                    }
                     else
-                    {
                         return Redirect(returnUrl);
-                    }
                 }
                 else
-                {
                     ModelState.AddModelError("", "Username or password incorrect");
-                }
             }
 
             return View();
@@ -96,9 +90,7 @@ namespace asp.net_core_trip_manager.Controllers
                     return RedirectToAction("Trips", "App");
                 }
                 foreach (var error in result.Errors)
-                {
                     ModelState.AddModelError("", error.Description);
-                }
             }
 
             return View(viewModel);

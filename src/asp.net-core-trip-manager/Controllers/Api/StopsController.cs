@@ -1,6 +1,8 @@
 ﻿using asp.net_core_trip_manager.Core.Dtos;
 using asp.net_core_trip_manager.Core.Models;
+using asp.net_core_trip_manager.Core.Repositories;
 using asp.net_core_trip_manager.Core.Services;
+using asp.net_core_trip_manager.Persistence;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +20,11 @@ namespace asp.net_core_trip_manager.Controllers.Api
     {
         private IGeoCoordsService _coordsService;
         private ILogger<StopsController> _logger;
-        private ITripRepository _repository;
+        private IUnitOfWork _unitOfWork;
 
-        public StopsController(ITripRepository repository, ILogger<StopsController> logger, IGeoCoordsService coordsService)
+        public StopsController(IUnitOfWork unitOfWork, ILogger<StopsController> logger, IGeoCoordsService coordsService)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
             _logger = logger;
             _coordsService = coordsService;
 
@@ -33,7 +35,7 @@ namespace asp.net_core_trip_manager.Controllers.Api
         {
             try
             {
-                var trip = _repository.GetUserTripByName(tripName, User.Identity.Name);
+                var trip = _unitOfWork.Trips.GetUserTripByName(tripName, User.Identity.Name);
                 return Ok(Mapper.Map<IEnumerable<StopDto>>(trip.Stops.OrderBy(s => s.Order).ToList()));
             }
             catch (Exception ex)
@@ -64,9 +66,9 @@ namespace asp.net_core_trip_manager.Controllers.Api
                         newStop.Latitude = result.Latitude;
                         newStop.Longitude = result.Longitude;
 
-                        _repository.AddStop(tripName, newStop, User.Identity.Name);
+                        _unitOfWork.Trips.AddStop(tripName, newStop, User.Identity.Name);
 
-                        if (await _repository.SaveChangesAsync())
+                        if (await _unitOfWork.CompleteAsync())
                         {
                             return Created($"api/trips/{tripName}/stops/{newStop.Name}",
                             Mapper.Map<StopDto>(newStop));

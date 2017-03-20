@@ -1,4 +1,5 @@
 ﻿using asp.net_core_trip_manager.Core.Models;
+using asp.net_core_trip_manager.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace asp.net_core_trip_manager.Persistence.Models
+namespace asp.net_core_trip_manager.Persistence.Repositories
 {
     public class TripRepository : ITripRepository
     {
@@ -67,9 +68,9 @@ namespace asp.net_core_trip_manager.Persistence.Models
                 .FirstOrDefault();
         }
 
-        public async Task<bool> SaveChangesAsync()
-        {
-            return await (_context.SaveChangesAsync()) > 0;
-        }
+        //public async Task<bool> SaveChangesAsync()
+        //{
+        //    return await (_context.SaveChangesAsync()) > 0;
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using asp.net_core_trip_manager.Core.Models;
+using asp.net_core_trip_manager.Core.Repositories;
 using asp.net_core_trip_manager.Core.Services;
 using asp.net_core_trip_manager.Core.ViewModels;
 using asp.net_core_trip_manager.Persistence;
@@ -17,14 +18,12 @@ namespace asp.net_core_trip_manager.Controllers.Web
     {
         private IMailService _mailService;
         private IConfigurationRoot _config;
-        private ITripRepository _repository;
         private ILogger<AppController> _logger;
 
-        public AppController(IMailService mailService, IConfigurationRoot config, ITripRepository repository, ILogger<AppController> logger)
+        public AppController(IMailService mailService, IConfigurationRoot config, ILogger<AppController> logger)
         {
             _mailService = mailService;
             _config = config;
-            _repository = repository;
             _logger = logger;
         }
 
