@@ -38,6 +38,16 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
             }
         }
 
+        public Stop GetStop(int id)
+        {
+            return _context.Stops.SingleOrDefault(s => s.Id == id);
+        }
+
+        public void RemoveStop(Stop stop)
+        {
+            _context.Stops.Remove(stop);
+        }
+
         public IEnumerable<Trip> GetAllTrips()
         {
             _logger.LogInformation("Getting All Trips from the Database");

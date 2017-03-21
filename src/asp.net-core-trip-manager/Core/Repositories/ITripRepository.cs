@@ -12,6 +12,7 @@ namespace asp.net_core_trip_manager.Core.Repositories
         Trip GetUserTripByName(string tripName, string username);
         void Add(Trip trip);
         void AddStop(string tripName, Stop newStop, string username);
-        //Task<bool> SaveChangesAsync();
+        Stop GetStop(int id);
+        void RemoveStop(Stop stop);
     }
 }

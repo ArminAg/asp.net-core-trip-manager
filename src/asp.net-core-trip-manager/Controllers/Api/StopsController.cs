@@ -82,5 +82,27 @@ namespace asp.net_core_trip_manager.Controllers.Api
             }
             return BadRequest("Failed to save the stop");
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var stop = _unitOfWork.Trips.GetStop(Convert.ToInt32(id));
+
+                if (stop == null)
+                    return NotFound();
+
+                _unitOfWork.Trips.RemoveStop(stop);
+
+                if (await _unitOfWork.CompleteAsync())
+                    return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete the Stop: {ex}");
+            }
+            return BadRequest("Failed to delete the Stop");
+        }
     }
 }

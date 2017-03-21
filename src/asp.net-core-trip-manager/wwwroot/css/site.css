@@ -119,6 +119,14 @@ footer.page-footer {
     height: 600px;
 }
 
+.btn-delete {
+    color: #424242;
+}
+
+.btn-delete:hover {
+    cursor: pointer;
+}
+
 /* Current Map Marker Overrides */
 .travelmap-overlay {
     font-size: 14px !important;

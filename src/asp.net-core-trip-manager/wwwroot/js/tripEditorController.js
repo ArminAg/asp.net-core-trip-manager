@@ -18,8 +18,6 @@
             .then(function (response) {
                 // Success
                 angular.copy(response.data, vm.stops);
-                console.log(response.data);
-                console.log(vm.stops);
                 _showMap(vm.stops);
             }, function (error) {
                 // Failure
@@ -35,13 +33,31 @@
                 .then(function (response) {
                     // Success
                     vm.stops.push(response.data);
-                    _showMap(vm.stops);
                     vm.newStop = {};
                     $scope.newStopForm.$setUntouched();
                     $scope.newStopForm.$setPristine();
+                    _showMap(vm.stops);
                 }, function () {
                     // Failure
                     Materialize.toast("Failed to add new Stop", 3000);
+                })
+                .finally(function () {
+                    vm.isBusy = false;
+                });
+        };
+
+        vm.deleteStop = function (stop) {
+            vm.isBusy = true;
+            console.log(stop);
+            $http.delete(url + "/" + stop.id)
+                .then(function () {
+                    // Success
+                    var index = vm.stops.indexOf(stop);
+                    vm.stops.splice(index, 1);
+                    _showMap(vm.stops);
+                }, function () {
+                    // Failure
+                    Materialize.toast("Failed to delete Stop", 3000);
                 })
                 .finally(function () {
                     vm.isBusy = false;
