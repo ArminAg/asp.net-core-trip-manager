@@ -35,8 +35,8 @@ namespace asp.net_core_trip_manager.Controllers.Api
         {
             try
             {
-                var trip = _unitOfWork.Stops.GetUserTripByName(tripName, User.Identity.Name);
-                return Ok(Mapper.Map<IEnumerable<StopDto>>(trip.Stops.OrderBy(s => s.Order).ToList()));
+                var stops = _unitOfWork.Stops.GetAllStopsForUsersTrip(tripName, User.Identity.Name);
+                return Ok(Mapper.Map<IEnumerable<StopDto>>(stops));
             }
             catch (Exception ex)
             {

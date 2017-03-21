@@ -23,7 +23,9 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
         public IEnumerable<Trip> GetAllTrips()
         {
             _logger.LogInformation("Getting All Trips from the Database");
-            return _context.Trips.ToList();
+            return _context.Trips
+                .OrderByDescending(t => t.DateCreated)
+                .ToList();
         }
 
         public IEnumerable<Trip> GetTripsByUsername(string name)
@@ -31,6 +33,7 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
             return _context.Trips
                 .Include(t => t.Stops)
                 .Where(t => t.UserName == name)
+                .OrderByDescending(t => t.DateCreated)
                 .ToList();
         }
 

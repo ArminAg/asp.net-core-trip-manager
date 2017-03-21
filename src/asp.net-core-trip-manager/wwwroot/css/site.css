@@ -136,6 +136,7 @@ footer.page-footer {
     border: none !important;
     border-radius: 0 !important;
     padding: 10px !important;
+    margin-top: -15px !important;
 }
 
 .travelmap-overlay-arrow.travelmap-overlay-arrow-above {

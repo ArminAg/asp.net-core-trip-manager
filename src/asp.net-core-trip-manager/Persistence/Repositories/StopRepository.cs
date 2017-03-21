@@ -20,6 +20,12 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
             _logger = logger;
         }
 
+        public IEnumerable<Stop> GetAllStopsForUsersTrip(string tripName, string username)
+        {
+            var trip = GetUserTripByName(tripName, username);
+            return trip.Stops.OrderBy(s => s.Order);
+        }
+
         public Stop GetStop(int id)
         {
             return _context.Stops.SingleOrDefault(s => s.Id == id);
@@ -31,6 +37,12 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
 
             if (trip != null)
             {
+                var currentStops = _context.Stops
+                    .Where(s => s.TripId == trip.Id)
+                    .Count();
+
+                // Automatically increment order of Stops
+                newStop.Order = (currentStops == 0) ? 1 : currentStops + 1;
                 // Foreign Key being set
                 trip.Stops.Add(newStop);
                 // Added as new object
@@ -38,7 +50,7 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
             }
         }
 
-        public Trip GetUserTripByName(string tripName, string username)
+        private Trip GetUserTripByName(string tripName, string username)
         {
             return _context.Trips
                 .Include(t => t.Stops)

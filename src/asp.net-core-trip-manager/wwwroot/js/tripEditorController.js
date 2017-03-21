@@ -80,7 +80,7 @@
             travelMap.createMap({
                 stops: mapStops,
                 selector: "#map",
-                currentStop: 1,
+                currentStop: stops.length -1,
                 initialZoom: 11,
                 icon: {           // Icon details
                     url: "../img/map-pin.png",
