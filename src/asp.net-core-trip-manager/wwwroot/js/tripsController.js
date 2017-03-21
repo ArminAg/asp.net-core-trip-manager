@@ -9,12 +9,10 @@
     function tripsController($http, $scope) {
         var vm = this;
         vm.trips = [];
-
         vm.newTrip = {};
+        vm.isBusy = true;
         $(".page-title").text("My Trips");
         
-        vm.isBusy = true;
-
         $http.get("/api/trips")
             .then(function (response) {
                 // Success

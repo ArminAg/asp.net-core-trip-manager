@@ -7,14 +7,12 @@
 
     function tripEditorController($routeParams, $http, $scope) {
         var vm = this;
-
         vm.tripName = $routeParams.tripName;
-        $(".page-title").text(vm.tripName);
         vm.stops = [];
         vm.isBusy = true;
         vm.newStop = {};
-
         var url = "/api/trips/" + vm.tripName + "/stops";
+        $(".page-title").text(vm.tripName);
 
         $http.get(url)
             .then(function (response) {
