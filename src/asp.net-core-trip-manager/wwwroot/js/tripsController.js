@@ -11,9 +11,10 @@
         vm.trips = [];
         vm.newTrip = {};
         vm.isBusy = true;
+        var url = "/api/trips";
         $(".page-title").text("My Trips");
         
-        $http.get("/api/trips")
+        $http.get(url)
             .then(function (response) {
                 // Success
                 angular.copy(response.data, vm.trips);
@@ -29,7 +30,7 @@
             vm.isBusy = true;
             
             console.log(vm.newTrip);
-            $http.post("/api/trips", vm.newTrip)
+            $http.post(url, vm.newTrip)
                 .then(function (response) {
                     // Success
                     vm.trips.push(response.data);
@@ -39,6 +40,23 @@
                 }, function (error) {
                     // Failure
                     Materialize.toast("Failed to save new Trip", 3000);
+                })
+                .finally(function () {
+                    vm.isBusy = false;
+                });
+        };
+
+        vm.deleteTrip = function (trip) {
+            vm.isBusy = true;
+
+            $http.delete(url + "/" + trip.id)
+                .then(function () {
+                    // Success
+                    var index = vm.trips.indexOf(trip);
+                    vm.trips.splice(index, 1);
+                }, function () {
+                    // Failure
+                    Materialize.toast("Failed to delete Trip", 3000);
                 })
                 .finally(function () {
                     vm.isBusy = false;

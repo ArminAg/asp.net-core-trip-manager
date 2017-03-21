@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="stop in vm.stops">
+                <tr class="item" ng-repeat="stop in vm.stops">
                     <td>{{ stop.name }}</td>
                     <td>{{ stop.arrival | date:shortDate }}</td>
                     <td><a ng-click="vm.deleteStop(stop)" class="btn-delete"><i class="material-icons">delete</i></a></td>

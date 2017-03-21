@@ -39,6 +39,9 @@
             <div class="card-content">
                 <p>Trip Date: <strong>{{ trip.dateCreated | date:'MM/dd/yyyy' }}</strong></p>
             </div>
+            <div class="card-action">
+                <a class="btn-delete" ng-click="vm.deleteTrip(trip)">Delete</a>
+            </div>
         </div>
     </div>
 </div>

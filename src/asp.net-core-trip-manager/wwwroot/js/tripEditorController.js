@@ -48,7 +48,7 @@
 
         vm.deleteStop = function (stop) {
             vm.isBusy = true;
-            console.log(stop);
+
             $http.delete(url + "/" + stop.id)
                 .then(function () {
                     // Success

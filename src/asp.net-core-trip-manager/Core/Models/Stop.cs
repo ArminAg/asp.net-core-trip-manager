@@ -10,5 +10,9 @@ namespace asp.net_core_trip_manager.Core.Models
         public double Longitude { get; set; }
         public int Order { get; set; }
         public DateTime Arrival { get; set; }
+
+        // Add Foreign Key Association
+        public int TripId { get; set; }
+        public Trip Trip { get; set; }
     }
 }

@@ -54,6 +54,13 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
             return _context.Trips.ToList();
         }
 
+        public Trip GetTripById(int id)
+        {
+            return _context.Trips
+                .Include(t => t.Stops)
+                .SingleOrDefault(t => t.Id == id);
+        }
+
         public Trip GetTripByName(string tripName)
         {
             return _context.Trips
@@ -78,9 +85,9 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
                 .FirstOrDefault();
         }
 
-        //public async Task<bool> SaveChangesAsync()
-        //{
-        //    return await (_context.SaveChangesAsync()) > 0;
-        //}
+        public void RemoveTrip(Trip trip)
+        {
+            _context.Trips.Remove(trip);
+        }
     }
 }
