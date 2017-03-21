@@ -86,6 +86,8 @@ namespace asp.net_core_trip_manager
             // Create one per request cycle
             services.AddScoped<ITripRepository, TripRepository>();
 
+            services.AddScoped<IStopRepository, StopRepository>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // When we need it create a new copy
