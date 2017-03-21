@@ -12,14 +12,18 @@ namespace asp.net_core_trip_manager.Persistence
     {
         private readonly TripContext _context;
         private ILogger<TripRepository> _tripLogger;
+        private ILogger<StopRepository> _stopLogger;
 
         public ITripRepository Trips { get; private set; }
+        public IStopRepository Stops { get; private set; }
 
-        public UnitOfWork(TripContext context, ILogger<TripRepository> logger)
+        public UnitOfWork(TripContext context, ILogger<TripRepository> tripLogger, ILogger<StopRepository> stopLogger)
         {
             _context = context;
-            _tripLogger = logger;
+            _tripLogger = tripLogger;
+            _stopLogger = stopLogger;
             Trips = new TripRepository(_context, _tripLogger);
+            Stops = new StopRepository(_context, _stopLogger);
         }
 
         public async Task<bool> CompleteAsync()

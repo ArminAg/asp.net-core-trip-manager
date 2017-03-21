@@ -7,6 +7,8 @@ namespace asp.net_core_trip_manager.Persistence
     {
         ITripRepository Trips { get; }
 
+        IStopRepository Stops { get; }
+
         Task<bool> CompleteAsync();
     }
 }

@@ -35,7 +35,7 @@ namespace asp.net_core_trip_manager.Controllers.Api
         {
             try
             {
-                var trip = _unitOfWork.Trips.GetUserTripByName(tripName, User.Identity.Name);
+                var trip = _unitOfWork.Stops.GetUserTripByName(tripName, User.Identity.Name);
                 return Ok(Mapper.Map<IEnumerable<StopDto>>(trip.Stops.OrderBy(s => s.Order).ToList()));
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace asp.net_core_trip_manager.Controllers.Api
                         newStop.Latitude = result.Latitude;
                         newStop.Longitude = result.Longitude;
 
-                        _unitOfWork.Trips.AddStop(tripName, newStop, User.Identity.Name);
+                        _unitOfWork.Stops.AddStop(tripName, newStop, User.Identity.Name);
 
                         if (await _unitOfWork.CompleteAsync())
                         {
@@ -88,12 +88,12 @@ namespace asp.net_core_trip_manager.Controllers.Api
         {
             try
             {
-                var stop = _unitOfWork.Trips.GetStop(Convert.ToInt32(id));
+                var stop = _unitOfWork.Stops.GetStop(Convert.ToInt32(id));
 
                 if (stop == null)
                     return NotFound();
 
-                _unitOfWork.Trips.RemoveStop(stop);
+                _unitOfWork.Stops.RemoveStop(stop);
 
                 if (await _unitOfWork.CompleteAsync())
                     return Ok();

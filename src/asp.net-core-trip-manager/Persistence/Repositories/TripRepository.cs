@@ -20,38 +20,18 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
             _logger = logger;
         }
 
-        public void Add(Trip trip)
-        {
-            _context.Add(trip);
-        }
-
-        public void AddStop(string tripName, Stop newStop, string username)
-        {
-            var trip = GetUserTripByName(tripName, username);
-
-            if (trip != null)
-            {
-                // Foreign Key being set
-                trip.Stops.Add(newStop);
-                // Added as new object
-                _context.Stops.Add(newStop);
-            }
-        }
-
-        public Stop GetStop(int id)
-        {
-            return _context.Stops.SingleOrDefault(s => s.Id == id);
-        }
-
-        public void RemoveStop(Stop stop)
-        {
-            _context.Stops.Remove(stop);
-        }
-
         public IEnumerable<Trip> GetAllTrips()
         {
             _logger.LogInformation("Getting All Trips from the Database");
             return _context.Trips.ToList();
+        }
+
+        public IEnumerable<Trip> GetTripsByUsername(string name)
+        {
+            return _context.Trips
+                .Include(t => t.Stops)
+                .Where(t => t.UserName == name)
+                .ToList();
         }
 
         public Trip GetTripById(int id)
@@ -69,22 +49,11 @@ namespace asp.net_core_trip_manager.Persistence.Repositories
                 .FirstOrDefault();
         }
 
-        public IEnumerable<Trip> GetTripsByUsername(string name)
+        public void Add(Trip trip)
         {
-            return _context.Trips
-                .Include(t => t.Stops)
-                .Where(t => t.UserName == name)
-                .ToList();
+            _context.Add(trip);
         }
-
-        public Trip GetUserTripByName(string tripName, string username)
-        {
-            return _context.Trips
-                .Include(t => t.Stops)
-                .Where(t => t.Name == tripName && t.UserName == username)
-                .FirstOrDefault();
-        }
-
+        
         public void RemoveTrip(Trip trip)
         {
             _context.Trips.Remove(trip);
