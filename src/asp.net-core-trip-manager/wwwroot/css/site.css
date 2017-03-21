@@ -50,6 +50,38 @@ nav.top-nav {
         font-size: 48px;
     }
 
+a.button-collapse.top-nav {
+    position: absolute;
+    text-align: center;
+    height: 48px;
+    width: 48px;
+    left: 4.2%;
+    top: 0;
+    float: none;
+    margin-left: 1.5rem;
+    color: #fff;
+    font-size: 36px;
+    z-index: 2;
+}
+
+    a.button-collapse.top-nav.full {
+        line-height: 122px;
+    }
+
+    a.button-collapse.top-nav i {
+        font-size: 32px;
+    }
+
+@media only screen and (max-width: 992px) {
+    nav .nav-wrapper {
+        text-align: center;
+    }
+
+        nav .nav-wrapper a.page-title {
+            font-size: 36px;
+        }
+}
+
 .background img {
     width: 100%;
     height: auto;
