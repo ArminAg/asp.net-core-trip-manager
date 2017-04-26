@@ -138,9 +138,7 @@ namespace asp.net_core_trip_manager
             {
                 config.MapRoute(
                     name: "Default",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "App", action = "Index" }
-                    );
+                    template: "{controller=App}/{action=Index}/{id?}");
             });
 
             seeder.EnsureSeedData().Wait();
